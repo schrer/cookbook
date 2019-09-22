@@ -6,7 +6,7 @@
 -->
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title th:text="${recipe.title}"></title>
+    <title>Editorial by HTML5 UP</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" th:href="@{/assets/css/main.css}" />
@@ -22,17 +22,20 @@
 
             <div th:replace="fragments/header.html"></div>
 
-            <!-- Content -->
-            <section>
-                <header class="main">
-                    <h1 th:text="${recipe.title}"></h1>
-                </header>
-                <p th:text="${recipe.instructions}"></p>
+            <!-- Banner -->
+            <section id="banner">
+                <div class="content">
+                    <header>
+                        <h1>404<br />
+                            Hier gibt es nichts zu essen</h1>
+                        <p>Dieses Rezept konnte ich nicht finden</p>
+                    </header>
+                </div>
             </section>
-
         </div>
     </div>
 
+    <!-- Sidebar -->
     <div th:replace="fragments/sidebar.html"></div>
 
 </div>

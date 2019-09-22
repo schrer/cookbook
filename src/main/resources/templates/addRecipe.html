@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{recipe.addrecipe.title}">Cookbook</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" th:href="@{/assets/css/main.css}" />
+</head>
+<body class="is-preload">
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Main -->
+    <div id="main">
+        <div class="inner">
+
+            <div th:replace="fragments/header.html"></div>
+
+            <!-- Content -->
+            <section>
+                <header class="main">
+                    <h1 th:text="#{recipe.create}">Rezept erstellen</h1>
+                </header>
+
+                <hr class="major" />
+
+                <form method="post" action="#" th:action="@{/recipes/add}" th:object="${recipe}">
+                    <div class="row gtr-uniform">
+                        <div class="col-6 col-12-xsmall">
+                            <input type="text" name="recipe-name" id="recipe-name" value="" th:field="*{title}" th:placeholder="#{recipe.name.placeholder}" />
+                            <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"></span>
+                        </div>
+                        <!-- Break -->
+                        <div class="col-12">
+                            <select name="demo-category" id="demo-category">
+                                <option value="">- Category -</option>
+                                <option value="1">Manufacturing</option>
+                                <option value="1">Shipping</option>
+                                <option value="1">Administration</option>
+                                <option value="1">Human Resources</option>
+                            </select>
+                        </div>
+                        <!-- Break -->
+                        <div class="col-12">
+                            <textarea name="recipe-instructions" id="recipe-instructions" th:field="*{instructions}" th:placeholder="#{recipe.instructions.placeholder}" rows="6"></textarea>
+                            <span th:if="${#fields.hasErrors('instructions')}" th:errors="*{instructions}" class="text-danger"></span>
+                        </div>
+                        <!-- Break -->
+                        <div class="col-12">
+                            <ul class="actions">
+                                <li><input type="submit" th:value="#{recipe.save}" class="primary" /></li>
+                                <li><input type="reset" th:value="#{recipe.reset}" /></li>
+                            </ul>
+                        </div>
+                    </div>
+                </form>
+
+            </section>
+
+
+        </div>
+    </div>
+
+    <div th:replace="fragments/sidebar.html"></div>
+
+</div>
+
+<div th:replace="fragments/scripts.html"></div>
+
+</body>
+</html>
