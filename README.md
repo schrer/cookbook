@@ -17,4 +17,4 @@ Therefore you should only set up this application in a network, where you trust 
 
 ## Acknowledgements
 
-Special thanks goes to [@ajlkn](https://twitter.com/ajlkn), who created the whole design and made it available, together with a whole lot more awesome designs, on his website [HTML5 UP!](https://html5up.net/)
+Special thanks goes to [@ajlkn](https://twitter.com/ajlkn), who created the design called 'Editorial' and made it available, together with a whole lot more awesome designs, on his website [HTML5 UP!](https://html5up.net/)
