@@ -10,7 +10,6 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    @NotBlank
     private long id;
 
     @Column(name = "title")

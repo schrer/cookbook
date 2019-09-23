@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{category.notfound.title}"></title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" th:href="@{/assets/css/main.css}" />
+</head>
+<body class="is-preload">
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Main -->
+    <div id="main">
+        <div class="inner">
+
+            <div th:replace="fragments/header.html"></div>
+
+            <!-- Banner -->
+            <section id="banner">
+                <div class="content">
+                    <header>
+                        <h1 th:text="#{category.notfound.text}"></h1>
+                        <p th:text="#{category.notfound.subtext}"></p>
+                    </header>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div th:replace="fragments/sidebar.html"></div>
+
+</div>
+
+<div th:replace="fragments/scripts.html"></div>
+
+</body>
+</html>

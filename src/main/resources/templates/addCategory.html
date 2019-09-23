@@ -39,7 +39,7 @@
                         <!-- Break -->
                         <div class="col-12">
                             <textarea name="recipe-instructions" id="recipe-instructions" th:field="*{description}" th:placeholder="#{category.description.placeholder}" rows="6"></textarea>
-                            <span th:if="${#fields.hasErrors('instructions')}" th:errors="*{description}" class="text-danger"></span>
+                            <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></span>
                         </div>
                         <!-- Break -->
                         <div class="col-12">

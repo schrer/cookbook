@@ -2,6 +2,7 @@ package at.schrer.cookbook.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity(name = "Recipe")
 public class Recipe {
@@ -21,6 +22,7 @@ public class Recipe {
 
     @ManyToOne
     @JoinColumn(name = "category")
+    @NotNull
     private Category category;
 
     public long getId() {
