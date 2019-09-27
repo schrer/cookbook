@@ -4,7 +4,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "category")
 public class Category {
 
     @Id
@@ -33,10 +32,6 @@ public class Category {
     }
 
     public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public Category (String title){
         this.title = title;
     }
 

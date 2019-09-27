@@ -34,16 +34,16 @@ public class CategoryController {
     return "categoryOverview";
   }
 
-  @GetMapping("{id}")
-  public String showRecipe(@PathVariable long id, Model model){
-    Optional<Category> recipe = categoryRepository.findById(id);
+  @GetMapping("/{id}")
+  public String showCategory(@PathVariable long id, Model model){
+    Optional<Category> category = categoryRepository.findById(id);
 
-    if (recipe.isPresent()){
-      model.addAttribute("recipe",recipe.get());
-      return "recipe";
+    if (category.isPresent()){
+      model.addAttribute("category",category.get());
+      return "category";
     }
 
-    return "recipeNotFound";
+    return "categoryNotFound";
 
   }
 

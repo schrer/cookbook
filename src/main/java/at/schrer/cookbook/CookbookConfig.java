@@ -1,5 +1,9 @@
 package at.schrer.cookbook;
 
+import at.schrer.cookbook.interceptor.SidebarHandlerInterceptor;
+import at.schrer.cookbook.repository.CategoryRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.LocaleResolver;
@@ -12,6 +16,13 @@ import java.util.Locale;
 
 @Configuration
 public class CookbookConfig implements WebMvcConfigurer {
+
+    private ApplicationContext applicationContext;
+
+    @Autowired
+    public CookbookConfig(ApplicationContext applicationContext){
+        this.applicationContext = applicationContext;
+    }
 
     @Bean
     public LocaleResolver localeResolver(){
@@ -29,6 +40,8 @@ public class CookbookConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+
         registry.addInterceptor(localeChangeInterceptor());
+        registry.addInterceptor(new SidebarHandlerInterceptor(applicationContext.getBean(CategoryRepository.class)));
     }
 }
