@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.validation.Valid;
 import java.util.Optional;
 
+import static at.schrer.cookbook.controller.ControllerConstants.*;
+
 @Controller
 @RequestMapping("/recipes/")
 public class RecipeController {
@@ -21,36 +23,36 @@ public class RecipeController {
     private RecipeRepository recipeRepository;
 
     @Autowired
-    public RecipeController(RecipeRepository recipeRepository){
+    public RecipeController(RecipeRepository recipeRepository) {
         this.recipeRepository = recipeRepository;
     }
 
     @GetMapping("{id}")
-    public String showRecipe(@PathVariable long id, Model model){
+    public String showRecipe(@PathVariable long id, Model model) {
         Optional<Recipe> recipe = recipeRepository.findById(id);
 
-        if (recipe.isPresent()){
-            model.addAttribute("recipe",recipe.get());
-            return "recipe";
+        if (recipe.isPresent()) {
+            model.addAttribute("recipe", recipe.get());
+            return TEMPLATE_RECIPE;
         }
 
-        return "recipeNotFound";
+        return TEMPLATE_RECIPE_NOT_FOUND;
 
     }
 
     @GetMapping("add")
-    public String showAddRecipe(){
-        return "addRecipe";
+    public String showAddRecipe() {
+        return TEMPLATE_ADD_RECIPE;
     }
 
     @PostMapping("add")
-    public String addRecipe(@Valid Recipe recipe, BindingResult result, Model model){
+    public String addRecipe(@Valid Recipe recipe, BindingResult result, Model model) {
 
-        if (result.hasErrors()){
-            return "addRecipe";
+        if (result.hasErrors()) {
+            return TEMPLATE_ADD_RECIPE;
         }
 
         Recipe savedRecipe = recipeRepository.save(recipe);
-        return "redirect:"+ savedRecipe.getId();
+        return REDIRECT_PREFIX + savedRecipe.getId();
     }
 }

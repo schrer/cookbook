@@ -18,58 +18,60 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
+import static at.schrer.cookbook.controller.ControllerConstants.*;
+
 @Controller
 @RequestMapping("/categories")
 public class CategoryController {
 
-  private CategoryRepository categoryRepository;
-  private RecipeRepository recipeRepository;
+    private CategoryRepository categoryRepository;
+    private RecipeRepository recipeRepository;
 
-  @Autowired
-  public CategoryController(CategoryRepository categoryRepository, RecipeRepository recipeRepository){
-    this.categoryRepository = categoryRepository;
-    this.recipeRepository = recipeRepository;
-  }
-
-  @GetMapping("/")
-  public String listCategories(Model model){
-    List<Category> categories = IteratorUtils.toList(categoryRepository.findAll().iterator());
-    model.addAttribute("categories", categories);
-    return "categoryOverview";
-  }
-
-  @GetMapping("/{id}")
-  public String showCategory(@PathVariable long id, Model model){
-    Optional<Category> categoryOptional = categoryRepository.findById(id);
-
-    if (categoryOptional.isPresent()){
-      Category category = categoryOptional.get();
-
-      List<Recipe> recipes = recipeRepository.findRecipesByCategory(category);
-
-      model.addAttribute("category",category);
-      model.addAttribute("recipes", recipes);
-
-      return "category";
+    @Autowired
+    public CategoryController(CategoryRepository categoryRepository, RecipeRepository recipeRepository) {
+        this.categoryRepository = categoryRepository;
+        this.recipeRepository = recipeRepository;
     }
 
-    return "categoryNotFound";
-
-  }
-
-  @GetMapping("/add")
-  public String showAddCategory(){
-    return "addCategory";
-  }
-
-  @PostMapping("/add")
-  public String addCategory(@Valid Category category, BindingResult result, Model model){
-
-    if (result.hasErrors()){
-      return "addCategory";
+    @GetMapping("/")
+    public String listCategories(Model model) {
+        List<Category> categories = IteratorUtils.toList(categoryRepository.findAll().iterator());
+        model.addAttribute("categories", categories);
+        return TEMPLATE_CATEGORY_OVERVIEW;
     }
 
-    Category savedCategory = categoryRepository.save(category);
-    return "redirect:"+ savedCategory.getId();
-  }
+    @GetMapping("/{id}")
+    public String showCategory(@PathVariable long id, Model model) {
+        Optional<Category> categoryOptional = categoryRepository.findById(id);
+
+        if (categoryOptional.isPresent()) {
+            Category category = categoryOptional.get();
+
+            List<Recipe> recipes = recipeRepository.findRecipesByCategory(category);
+
+            model.addAttribute("category", category);
+            model.addAttribute("recipes", recipes);
+
+            return TEMPLATE_CATEGORY;
+        }
+
+        return TEMPLATE_CATEGORY_NOT_FOUND;
+
+    }
+
+    @GetMapping("/add")
+    public String showAddCategory() {
+        return TEMPLATE_ADD_CATEGORY;
+    }
+
+    @PostMapping("/add")
+    public String addCategory(@Valid Category category, BindingResult result, Model model) {
+
+        if (result.hasErrors()) {
+            return TEMPLATE_ADD_CATEGORY;
+        }
+
+        Category savedCategory = categoryRepository.save(category);
+        return REDIRECT_PREFIX + savedCategory.getId();
+    }
 }
