@@ -39,7 +39,7 @@ public class RecipeController {
     }
 
     @GetMapping("add")
-    public String showAddRecipe(Recipe recipe){
+    public String showAddRecipe(){
         return "addRecipe";
     }
 

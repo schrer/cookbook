@@ -1,7 +1,9 @@
 package at.schrer.cookbook.controller;
 
 import at.schrer.cookbook.entity.Category;
+import at.schrer.cookbook.entity.Recipe;
 import at.schrer.cookbook.repository.CategoryRepository;
+import at.schrer.cookbook.repository.RecipeRepository;
 import org.apache.commons.collections4.IteratorUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,10 +23,12 @@ import java.util.Optional;
 public class CategoryController {
 
   private CategoryRepository categoryRepository;
+  private RecipeRepository recipeRepository;
 
   @Autowired
-  public CategoryController(CategoryRepository categoryRepository){
+  public CategoryController(CategoryRepository categoryRepository, RecipeRepository recipeRepository){
     this.categoryRepository = categoryRepository;
+    this.recipeRepository = recipeRepository;
   }
 
   @GetMapping("/")
@@ -36,10 +40,16 @@ public class CategoryController {
 
   @GetMapping("/{id}")
   public String showCategory(@PathVariable long id, Model model){
-    Optional<Category> category = categoryRepository.findById(id);
+    Optional<Category> categoryOptional = categoryRepository.findById(id);
 
-    if (category.isPresent()){
-      model.addAttribute("category",category.get());
+    if (categoryOptional.isPresent()){
+      Category category = categoryOptional.get();
+
+      List<Recipe> recipes = recipeRepository.findRecipesByCategory(category);
+
+      model.addAttribute("category",category);
+      model.addAttribute("recipes", recipes);
+
       return "category";
     }
 
@@ -48,7 +58,7 @@ public class CategoryController {
   }
 
   @GetMapping("/add")
-  public String showAddCategory(Category category){
+  public String showAddCategory(){
     return "addCategory";
   }
 

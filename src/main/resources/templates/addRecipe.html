@@ -38,12 +38,9 @@
                         </div>
                         <!-- Break -->
                         <div class="col-12">
-                            <select name="demo-category" id="demo-category">
-                                <option value="">- Category -</option>
-                                <option value="1">Manufacturing</option>
-                                <option value="1">Shipping</option>
-                                <option value="1">Administration</option>
-                                <option value="1">Human Resources</option>
+                            <span th:if="${#fields.hasErrors('category')}" th:errors="*{category}" class="text-danger" th:text="#{category.add.errors.invalidCategory}"></span>
+                            <select>
+                                <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.title}"></option>
                             </select>
                         </div>
                         <!-- Break -->

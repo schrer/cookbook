@@ -30,6 +30,13 @@
                 <p th:text="${category.description}"></p>
             </section>
 
+            <section>
+                <p th:if="${#lists.isEmpty(recipes)}" th:text="#{category.overview.norecipes}"></p>
+                <div th:unless="${#lists.isEmpty(recipes)}">
+
+                </div>
+            </section>
+
         </div>
     </div>
 
