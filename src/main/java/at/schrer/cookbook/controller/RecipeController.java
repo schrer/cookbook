@@ -41,7 +41,7 @@ public class RecipeController {
     }
 
     @GetMapping("add")
-    public String showAddRecipe() {
+    public String showAddRecipe(Recipe recipe) {
         return TEMPLATE_ADD_RECIPE;
     }
 

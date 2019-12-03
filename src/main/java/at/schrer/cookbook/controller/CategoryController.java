@@ -60,7 +60,7 @@ public class CategoryController {
     }
 
     @GetMapping("/add")
-    public String showAddCategory() {
+    public String showAddCategory(Category category) {
         return TEMPLATE_ADD_CATEGORY;
     }
 
