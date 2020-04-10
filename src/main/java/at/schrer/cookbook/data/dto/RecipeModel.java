@@ -16,6 +16,10 @@ public class RecipeModel {
     @NotNull
     private long categoryId;
 
+    private String url;
+
+    private String shortDescription;
+
     public long getId() {
         return id;
     }
@@ -48,4 +52,19 @@ public class RecipeModel {
         this.categoryId = categoryId;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
+    }
 }

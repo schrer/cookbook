@@ -32,11 +32,9 @@ public class CategoryController {
         this.recipeService = recipeService;
     }
 
-    @GetMapping("/")
-    public String listCategories(Model model) {
-        List<CategoryModel> categories = categoryService.getAllCategories();
-        model.addAttribute("categories", categories);
-        return TEMPLATE_CATEGORY_OVERVIEW;
+    @GetMapping({"/",""})
+    public String redirectHome() {
+        return REDIRECT_PREFIX + "/";
     }
 
     @GetMapping("/{id}")
@@ -48,8 +46,8 @@ public class CategoryController {
 
             List<RecipeModel> recipes = recipeService.getRecipesByCategory(category);
 
-            model.addAttribute("category", category);
-            model.addAttribute("recipes", recipes);
+            model.addAttribute(MODEL_ATTR_CATEGORY, category);
+            model.addAttribute(MODEL_ATTR_RECIPE_LIST, recipes);
 
             return TEMPLATE_CATEGORY;
         }
@@ -60,7 +58,7 @@ public class CategoryController {
 
     @GetMapping("/add")
     public String showAddCategory(Model model) {
-        model.addAttribute("category", new CategoryModel());
+        model.addAttribute(MODEL_ATTR_CATEGORY, new CategoryModel());
         return TEMPLATE_ADD_CATEGORY;
     }
 

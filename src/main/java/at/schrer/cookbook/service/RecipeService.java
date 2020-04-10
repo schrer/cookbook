@@ -5,6 +5,7 @@ import at.schrer.cookbook.data.dto.RecipeModel;
 import at.schrer.cookbook.data.entity.CategoryEntity;
 import at.schrer.cookbook.data.entity.RecipeEntity;
 import at.schrer.cookbook.repository.RecipeRepository;
+import org.apache.commons.collections4.IteratorUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.convert.ConversionService;
@@ -36,6 +37,18 @@ public class RecipeService {
 
         entity = recipeRepository.save(entity);
         return converter.convert(entity, RecipeModel.class);
+    }
+
+    public List<RecipeModel> getAllRecipes(){
+        Iterable<RecipeEntity> recipeEntities = recipeRepository.findAll();
+        List<RecipeModel> recipeModels = new LinkedList<>();
+
+        recipeEntities.
+                forEach(
+                        recipeEntity -> recipeModels.add(converter.convert(recipeEntity, RecipeModel.class))
+                );
+
+        return recipeModels;
     }
 
     public List<RecipeModel> getRecipesByCategory(CategoryModel categoryModel) {

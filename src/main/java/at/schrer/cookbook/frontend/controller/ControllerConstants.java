@@ -8,6 +8,10 @@ class ControllerConstants {
 
     static final String REDIRECT_PREFIX = "redirect:";
 
+    static final String MODEL_ATTR_RECIPE_LIST = "recipeList";
+    static final String MODEL_ATTR_CATEGORY = "category";
+    static final String MODEL_ATTR_RECIPE = "recipe";
+
     // HomePageController
     static final String TEMPLATE_HOMEPAGE = "homepage";
 

@@ -14,7 +14,7 @@ import java.util.Optional;
 import static at.schrer.cookbook.frontend.controller.ControllerConstants.*;
 
 @Controller
-@RequestMapping("/recipes/")
+@RequestMapping("/recipes")
 public class RecipeController {
 
     private RecipeService recipeService;
@@ -24,12 +24,17 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
-    @GetMapping("{id}")
+    @GetMapping({"/",""})
+    public String redirectHome() {
+        return REDIRECT_PREFIX + "/";
+    }
+
+    @GetMapping("/{id}")
     public String showRecipe(@PathVariable long id, Model model) {
         Optional<RecipeModel> recipe = recipeService.getRecipeById(id);
 
         if (recipe.isPresent()) {
-            model.addAttribute("recipe", recipe.get());
+            model.addAttribute(MODEL_ATTR_RECIPE, recipe.get());
             return TEMPLATE_RECIPE;
         }
 
@@ -37,14 +42,14 @@ public class RecipeController {
 
     }
 
-    @GetMapping("add")
+    @GetMapping("/add")
     public String showAddRecipe(Model model) {
-        model.addAttribute("recipe",new RecipeModel());
+        model.addAttribute(MODEL_ATTR_RECIPE,new RecipeModel());
         return TEMPLATE_ADD_RECIPE;
     }
 
-    @PostMapping("add")
-    public String addRecipe(@Valid @ModelAttribute("recipe") RecipeModel recipe, BindingResult result, Model model) {
+    @PostMapping("/add")
+    public String addRecipe(@Valid @ModelAttribute(MODEL_ATTR_RECIPE) RecipeModel recipe, BindingResult result, Model model) {
 
         if (result.hasErrors()) {
             return TEMPLATE_ADD_RECIPE;

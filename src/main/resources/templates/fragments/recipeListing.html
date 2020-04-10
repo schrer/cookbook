@@ -1,0 +1,15 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<!--/*@thymesVar id="recipeList" type="java.util.List<at.schrer.cookbook.data.dto.RecipeModel>"*/-->
+    <section>
+        <p th:if="${#lists.isEmpty(recipeList)}" th:text="#{recipe.listing.norecipes}"></p>
+        <div class="posts" th:unless="${#lists.isEmpty(recipeList)}">
+            <article th:each="recipe : ${recipeList}">
+                <h3 th:text="${recipe.title}">Placeholder</h3>
+                <p th:unless="${#strings.isEmpty(recipe.shortDescription)}" th:text="${recipe.shortDescription}">Short description of the recipe.</p>
+                <ul class="actions">
+                    <li><a th:href="${recipe.url}" class="button" th:text="#{recipe.listing.open.recipe}"></a></li>
+                </ul>
+            </article>
+        </div>
+    </section>
+</html>
