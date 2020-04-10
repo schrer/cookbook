@@ -63,13 +63,13 @@ public class CategoryController {
     }
 
     @PostMapping("/add")
-    public String addCategory(@Valid CategoryModel category, BindingResult result, Model model) {
+    public String addCategory(@Valid CategoryModel category, BindingResult result) {
 
         if (result.hasErrors()) {
             return TEMPLATE_ADD_CATEGORY;
         }
 
         CategoryModel savedCategory = categoryService.saveCategory(category);
-        return REDIRECT_PREFIX + savedCategory.getId();
+        return REDIRECT_PREFIX + savedCategory.getUrl();
     }
 }

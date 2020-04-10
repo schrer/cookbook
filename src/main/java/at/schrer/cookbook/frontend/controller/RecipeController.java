@@ -49,13 +49,13 @@ public class RecipeController {
     }
 
     @PostMapping("/add")
-    public String addRecipe(@Valid @ModelAttribute(MODEL_ATTR_RECIPE) RecipeModel recipe, BindingResult result, Model model) {
+    public String addRecipe(@Valid RecipeModel recipe, BindingResult result) {
 
         if (result.hasErrors()) {
             return TEMPLATE_ADD_RECIPE;
         }
 
         RecipeModel savedRecipe = recipeService.saveRecipe(recipe);
-        return REDIRECT_PREFIX + savedRecipe.getId();
+        return REDIRECT_PREFIX + savedRecipe.getUrl();
     }
 }
