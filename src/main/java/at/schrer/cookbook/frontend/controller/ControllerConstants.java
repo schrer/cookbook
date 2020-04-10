@@ -1,9 +1,10 @@
-package at.schrer.cookbook.controller;
+package at.schrer.cookbook.frontend.controller;
 
 class ControllerConstants {
 
     // No instantiation possible
-    private ControllerConstants(){}
+    private ControllerConstants() {
+    }
 
     static final String REDIRECT_PREFIX = "redirect:";
 

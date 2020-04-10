@@ -1,21 +1,14 @@
-package at.schrer.cookbook.entity;
+package at.schrer.cookbook.data.dto;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
-@Entity
-public class Category {
+public class CategoryModel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private long id;
 
-    @Column(name = "title")
     @NotBlank
     private String title;
 
-    @Column(name = "description")
     private String description;
 
 
@@ -42,4 +35,5 @@ public class Category {
     public void setDescription(String description) {
         this.description = description;
     }
+
 }

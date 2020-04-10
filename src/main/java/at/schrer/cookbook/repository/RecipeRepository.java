@@ -1,12 +1,12 @@
 package at.schrer.cookbook.repository;
 
-import at.schrer.cookbook.entity.Category;
-import at.schrer.cookbook.entity.Recipe;
+import at.schrer.cookbook.data.entity.CategoryEntity;
+import at.schrer.cookbook.data.entity.RecipeEntity;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface RecipeRepository extends CrudRepository<Recipe, Long> {
+public interface RecipeRepository extends CrudRepository<RecipeEntity, Long> {
 
-    List<Recipe> findRecipesByCategory(Category category);
+    List<RecipeEntity> findRecipesByCategory(CategoryEntity category);
 }

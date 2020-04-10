@@ -1,29 +1,20 @@
-package at.schrer.cookbook.entity;
+package at.schrer.cookbook.data.dto;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-@Entity(name = "Recipe")
-public class Recipe {
+public class RecipeModel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private long id;
 
-    @Column(name = "title")
     @NotBlank
     private String title;
 
-    @Column(name = "instructions")
     @NotBlank
     private String instructions;
 
-    @ManyToOne
-    @JoinColumn(name = "category")
     @NotNull
-    private Category category;
+    private long categoryId;
 
     public long getId() {
         return id;
@@ -49,12 +40,12 @@ public class Recipe {
         this.instructions = instructions;
     }
 
-    public Category getCategory() {
-        return category;
+    public long getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryId(long categoryId) {
+        this.categoryId = categoryId;
     }
 
 }

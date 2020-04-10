@@ -1,10 +1,9 @@
-package at.schrer.cookbook.controller;
+package at.schrer.cookbook.frontend.controller;
 
-import at.schrer.cookbook.entity.Category;
-import at.schrer.cookbook.entity.Recipe;
-import at.schrer.cookbook.repository.CategoryRepository;
-import at.schrer.cookbook.repository.RecipeRepository;
-import org.apache.commons.collections4.IteratorUtils;
+import at.schrer.cookbook.data.dto.CategoryModel;
+import at.schrer.cookbook.data.dto.RecipeModel;
+import at.schrer.cookbook.service.CategoryService;
+import at.schrer.cookbook.service.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,36 +17,36 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
-import static at.schrer.cookbook.controller.ControllerConstants.*;
+import static at.schrer.cookbook.frontend.controller.ControllerConstants.*;
 
 @Controller
 @RequestMapping("/categories")
 public class CategoryController {
 
-    private CategoryRepository categoryRepository;
-    private RecipeRepository recipeRepository;
+    private CategoryService categoryService;
+    private RecipeService recipeService;
 
     @Autowired
-    public CategoryController(CategoryRepository categoryRepository, RecipeRepository recipeRepository) {
-        this.categoryRepository = categoryRepository;
-        this.recipeRepository = recipeRepository;
+    public CategoryController(CategoryService categoryService, RecipeService recipeService) {
+        this.categoryService = categoryService;
+        this.recipeService = recipeService;
     }
 
     @GetMapping("/")
     public String listCategories(Model model) {
-        List<Category> categories = IteratorUtils.toList(categoryRepository.findAll().iterator());
+        List<CategoryModel> categories = categoryService.getAllCategories();
         model.addAttribute("categories", categories);
         return TEMPLATE_CATEGORY_OVERVIEW;
     }
 
     @GetMapping("/{id}")
     public String showCategory(@PathVariable long id, Model model) {
-        Optional<Category> categoryOptional = categoryRepository.findById(id);
+        Optional<CategoryModel> categoryOptional = categoryService.getCategoryByID(id);
 
         if (categoryOptional.isPresent()) {
-            Category category = categoryOptional.get();
+            CategoryModel category = categoryOptional.get();
 
-            List<Recipe> recipes = recipeRepository.findRecipesByCategory(category);
+            List<RecipeModel> recipes = recipeService.getRecipesByCategory(category);
 
             model.addAttribute("category", category);
             model.addAttribute("recipes", recipes);
@@ -60,18 +59,19 @@ public class CategoryController {
     }
 
     @GetMapping("/add")
-    public String showAddCategory(Category category) {
+    public String showAddCategory(Model model) {
+        model.addAttribute("category", new CategoryModel());
         return TEMPLATE_ADD_CATEGORY;
     }
 
     @PostMapping("/add")
-    public String addCategory(@Valid Category category, BindingResult result, Model model) {
+    public String addCategory(@Valid CategoryModel category, BindingResult result, Model model) {
 
         if (result.hasErrors()) {
             return TEMPLATE_ADD_CATEGORY;
         }
 
-        Category savedCategory = categoryRepository.save(category);
+        CategoryModel savedCategory = categoryService.saveCategory(category);
         return REDIRECT_PREFIX + savedCategory.getId();
     }
 }
