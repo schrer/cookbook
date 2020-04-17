@@ -1,5 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <!--/*@thymesVar id="categories" type="java.util.List<at.schrer.cookbook.data.dto.CategoryModel>"*/-->
+<!--/*@thymesVar id="homepageUrl" type="java.lang.String"*/-->
+<!--/*@thymesVar id="addCategoryUrl" type="java.lang.String"*/-->
 <div id="sidebar" class="">
     <div class="inner">
 
@@ -16,10 +18,13 @@
                 <h2 th:text="#{sidebar.menu}">Menu</h2>
             </header>
             <ul>
-                <li><a href="/" th:text="#{sidebar.homepage}">Homepage</a></li>
+                <li><a th:href="${homepageUrl}" th:text="#{sidebar.homepage}">Homepage</a></li>
                 <li th:each="category : ${categories}"><a th:href="${category.url}" th:text="${category.title}"></a></li>
             </ul>
         </nav>
+        <section>
+            <a th:href="${addCategoryUrl}" th:text="#{category.add.button}" class="button fit">New Category</a>
+        </section>
         <!-- Footer -->
         <footer id="footer">
             <p class="copyright">© Untitled. All rights reserved. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>

@@ -1,7 +1,8 @@
 <!-- Header -->
 <header id="header" xmlns:th="http://www.thymeleaf.org">
+    <!--/*@thymesVar id="addRecipeUrl" type="java.lang.String"*/-->
     <a th:href="@{/}" class="logo"><strong th:text="#{site.title}"></strong></a>
     <ul class="icons">
-        <li><a href="/recipes/add" class="icon solid fa-plus"><span class="label">Add Recipe</span></a></li>
+        <li><a th:href="${addRecipeUrl}" class="icon solid fa-plus"><span class="label">Add Recipe</span></a></li>
     </ul>
 </header>

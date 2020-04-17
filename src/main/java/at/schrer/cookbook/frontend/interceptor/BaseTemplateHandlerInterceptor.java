@@ -1,6 +1,7 @@
 package at.schrer.cookbook.frontend.interceptor;
 
 import at.schrer.cookbook.data.dto.CategoryModel;
+import at.schrer.cookbook.frontend.util.UrlResolver;
 import at.schrer.cookbook.service.CategoryService;
 import org.apache.commons.collections4.IteratorUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +15,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Component
-public class SidebarHandlerInterceptor extends HandlerInterceptorAdapter {
+public class BaseTemplateHandlerInterceptor extends HandlerInterceptorAdapter {
 
-    private CategoryService categoryService;
+    private final CategoryService categoryService;
+    private final UrlResolver urlResolver;
 
     @Autowired
-    public SidebarHandlerInterceptor(CategoryService categoryService) {
+    public BaseTemplateHandlerInterceptor(CategoryService categoryService, UrlResolver urlResolver) {
         this.categoryService = categoryService;
+        this.urlResolver = urlResolver;
     }
 
     @Override
@@ -41,7 +44,9 @@ public class SidebarHandlerInterceptor extends HandlerInterceptorAdapter {
                                 iterator());
                 modelMap.addAttribute("categories", categories);
             }
-
+            modelMap.addAttribute("homepageUrl", urlResolver.resolve(UrlResolver.Path.HOMEPAGE));
+            modelMap.addAttribute("addRecipeUrl", urlResolver.resolve(UrlResolver.Path.ADD_RECIPE));
+            modelMap.addAttribute("addCategoryUrl", urlResolver.resolve(UrlResolver.Path.ADD_CATEGORY));
         }
 
     }

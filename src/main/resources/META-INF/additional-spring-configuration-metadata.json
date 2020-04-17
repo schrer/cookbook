@@ -1,0 +1,28 @@
+{
+  "properties": [
+    {
+      "name": "application.data-dir",
+      "type": "java.lang.String",
+      "description": "Directory where the application data will be stored (database file, images, etc.)."
+    },
+    {
+      "name": "jdbc.url",
+      "type": "java.lang.String",
+      "description": "The JDBC connection URL."
+    },
+    {
+      "name": "jdbc.username",
+      "type": "java.lang.String",
+      "description": "Username for the database."
+    },
+    {
+      "name": "jdbc.password",
+      "type": "java.lang.String",
+      "description": "Password to the database user."
+    },
+    {
+      "name": "jdbc.driver",
+      "type": "java.lang.String",
+      "description": "Fully qualified name of the database driver."
+    }
+  ] }

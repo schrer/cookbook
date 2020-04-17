@@ -1,6 +1,6 @@
 package at.schrer.cookbook;
 
-import at.schrer.cookbook.frontend.interceptor.SidebarHandlerInterceptor;
+import at.schrer.cookbook.frontend.interceptor.BaseTemplateHandlerInterceptor;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,7 @@ public class CookbookConfig implements WebMvcConfigurer {
     @Value("${jdbc.password}")
     private String dbPassword;
 
-    private ApplicationContext applicationContext;
+    private final ApplicationContext applicationContext;
 
     @Autowired
     public CookbookConfig(ApplicationContext applicationContext){
@@ -64,7 +64,7 @@ public class CookbookConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
 
         registry.addInterceptor(localeChangeInterceptor());
-        registry.addInterceptor(applicationContext.getBean(SidebarHandlerInterceptor.class));
+        registry.addInterceptor(applicationContext.getBean(BaseTemplateHandlerInterceptor.class));
     }
 
     @Bean

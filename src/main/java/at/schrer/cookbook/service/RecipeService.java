@@ -5,7 +5,6 @@ import at.schrer.cookbook.data.dto.RecipeModel;
 import at.schrer.cookbook.data.entity.CategoryEntity;
 import at.schrer.cookbook.data.entity.RecipeEntity;
 import at.schrer.cookbook.repository.RecipeRepository;
-import org.apache.commons.collections4.IteratorUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.convert.ConversionService;
@@ -20,8 +19,8 @@ import static at.schrer.cookbook.CookbookConfig.COOOKBOOK_CONVERTER_BEAN_NAME;
 @Service
 public class RecipeService {
 
-    private RecipeRepository recipeRepository;
-    private ConversionService converter;
+    private final RecipeRepository recipeRepository;
+    private final ConversionService converter;
 
     @Autowired
     public RecipeService(RecipeRepository recipeRepository, @Qualifier(COOOKBOOK_CONVERTER_BEAN_NAME) ConversionService converter) {
