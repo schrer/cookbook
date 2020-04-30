@@ -1,9 +1,13 @@
 package at.schrer.cookbook.data.entity;
 
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+@Indexed
 @Entity(name = "Recipe")
 public class RecipeEntity {
 
@@ -14,10 +18,12 @@ public class RecipeEntity {
 
     @Column(name = "title")
     @NotBlank
+    @Field
     private String title;
 
     @Column(name = "instructions")
     @NotBlank
+    @Field
     private String instructions;
 
     @ManyToOne

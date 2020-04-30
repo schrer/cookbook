@@ -48,9 +48,9 @@ public class CookbookConfig implements WebMvcConfigurer {
 
     @Bean
     public LocaleResolver localeResolver(){
-        SessionLocaleResolver slr = new SessionLocaleResolver();
-        slr.setDefaultLocale(Locale.GERMAN);
-        return slr;
+        SessionLocaleResolver localeResolver = new SessionLocaleResolver();
+        localeResolver.setDefaultLocale(Locale.GERMAN);
+        return localeResolver;
     }
 
     @Bean

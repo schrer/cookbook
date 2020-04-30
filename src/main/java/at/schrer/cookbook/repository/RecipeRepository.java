@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface RecipeRepository extends CrudRepository<RecipeEntity, Long> {
 
-    List<RecipeEntity> findRecipesByCategory(CategoryEntity category);
+    List<RecipeEntity> findRecipeEntitiesByCategory(CategoryEntity category);
 }

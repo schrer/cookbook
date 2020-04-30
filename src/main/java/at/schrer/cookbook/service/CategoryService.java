@@ -17,8 +17,8 @@ import static at.schrer.cookbook.CookbookConfig.COOOKBOOK_CONVERTER_BEAN_NAME;
 @Service
 public class CategoryService {
 
-    private CategoryRepository categoryRepository;
-    private ConversionService converter;
+    private final CategoryRepository categoryRepository;
+    private final ConversionService converter;
 
     @Autowired
     public CategoryService(CategoryRepository categoryRepository, @Qualifier(COOOKBOOK_CONVERTER_BEAN_NAME) ConversionService converter) {

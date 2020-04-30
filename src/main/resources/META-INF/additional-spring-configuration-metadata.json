@@ -3,7 +3,7 @@
     {
       "name": "application.data-dir",
       "type": "java.lang.String",
-      "description": "Directory where the application data will be stored (database file, images, etc.)."
+      "description": "Directory where the application data will be stored (database file, index, images, etc.)."
     },
     {
       "name": "jdbc.url",
