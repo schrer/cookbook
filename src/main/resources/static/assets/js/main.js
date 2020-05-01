@@ -259,4 +259,9 @@
 
 			});
 
+	$('#image-upload').change(function(){
+		let filename = $(this).val()
+		$('#image-upload-button').html(filename.substring(filename.lastIndexOf("\\") + 1, filename.length));
+	});
+
 })(jQuery);

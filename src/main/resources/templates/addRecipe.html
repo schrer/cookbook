@@ -36,7 +36,6 @@
                             <input type="text" name="recipe-name" id="recipe-name" value="" th:field="*{title}" th:placeholder="#{recipe.name.placeholder}" />
                             <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"></span>
                         </div>
-                        <!-- Break -->
                         <div class="col-12">
                             <span th:if="${#fields.hasErrors('categoryId')}" th:errors="*{categoryId}" class="text-danger" th:text="#{category.add.errors.invalidCategory}"></span>
                             <select th:field="*{categoryId}">
@@ -44,12 +43,16 @@
                                 <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.title}"></option>
                             </select>
                         </div>
-                        <!-- Break -->
+                        <div class="col-12">
+                            <div class="upload-btn-wrapper">
+                                <button id="image-upload-button" name="image-upload-button" class="button icon solid fa-download">Upload a file</button>
+                                <input type="file" id="image-upload" name="image-upload" accept="image/jpeg,image/png"/>
+                            </div>
+                        </div>
                         <div class="col-12">
                             <textarea name="recipe-instructions" id="recipe-instructions" th:field="*{instructions}" th:placeholder="#{recipe.instructions.placeholder}" rows="6"></textarea>
                             <span th:if="${#fields.hasErrors('instructions')}" th:errors="*{instructions}" class="text-danger"></span>
                         </div>
-                        <!-- Break -->
                         <div class="col-12">
                             <ul class="actions">
                                 <li><input type="submit" th:value="#{recipe.save}" class="primary" /></li>
