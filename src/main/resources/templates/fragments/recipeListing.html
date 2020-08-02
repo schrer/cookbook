@@ -1,5 +1,5 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<!--/*@thymesVar id="recipeList" type="java.util.List<at.schrer.cookbook.data.dto.RecipeModel>"*/-->
+<!--/*@thymesVar id="recipeList" type="java.util.List<at.schrer.cookbook.data.model.RecipeModel>"*/-->
     <section>
         <p th:if="${#lists.isEmpty(recipeList)}" th:text="#{recipe.listing.norecipes}"></p>
         <div class="posts" th:unless="${#lists.isEmpty(recipeList)}">

@@ -1,6 +1,6 @@
 package at.schrer.cookbook.data.converters;
 
-import at.schrer.cookbook.data.dto.RecipeModel;
+import at.schrer.cookbook.data.model.RecipeModel;
 import at.schrer.cookbook.data.entity.CategoryEntity;
 import at.schrer.cookbook.data.entity.RecipeEntity;
 import at.schrer.cookbook.repository.CategoryRepository;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class RecipeToEntityConverter implements Converter<RecipeModel, RecipeEntity> {
 
-    private CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRepository;
 
     @Autowired
     public RecipeToEntityConverter(CategoryRepository categoryRepository){

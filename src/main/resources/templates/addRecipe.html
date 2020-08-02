@@ -30,7 +30,7 @@
 
                 <hr class="major" />
 
-                <form method="post" action="#" th:action="@{/recipes/add}" th:object="${recipe}">
+                <form method="post" enctype="multipart/form-data" action="#" th:action="@{/recipes/add}" th:object="${recipe}">
                     <div class="row gtr-uniform">
                         <div class="col-6 col-12-xsmall">
                             <input type="text" name="recipe-name" id="recipe-name" value="" th:field="*{title}" th:placeholder="#{recipe.name.placeholder}" />
@@ -39,14 +39,14 @@
                         <div class="col-12">
                             <span th:if="${#fields.hasErrors('categoryId')}" th:errors="*{categoryId}" class="text-danger" th:text="#{category.add.errors.invalidCategory}"></span>
                             <select th:field="*{categoryId}">
-                                <!--/*@thymesVar id="categories" type="java.util.List<at.schrer.cookbook.data.dto.CategoryModel>"*/-->
+                                <!--/*@thymesVar id="categories" type="java.util.List<at.schrer.cookbook.data.model.CategoryModel>"*/-->
                                 <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.title}"></option>
                             </select>
                         </div>
                         <div class="col-12">
                             <div class="upload-btn-wrapper">
                                 <button id="image-upload-button" name="image-upload-button" class="button icon solid fa-download">Upload a file</button>
-                                <input type="file" id="image-upload" name="image-upload" accept="image/jpeg,image/png"/>
+                                <input type="file" id="image-upload" th:field="*{multiPartImage}" name="image-upload" accept="image/jpeg,image/png"/>
                             </div>
                         </div>
                         <div class="col-12">

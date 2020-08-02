@@ -1,6 +1,6 @@
 package at.schrer.cookbook.data.converters;
 
-import at.schrer.cookbook.data.dto.CategoryModel;
+import at.schrer.cookbook.data.model.CategoryModel;
 import at.schrer.cookbook.data.entity.CategoryEntity;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;

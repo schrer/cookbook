@@ -1,7 +1,7 @@
 package at.schrer.cookbook.frontend.controller;
 
-import at.schrer.cookbook.data.dto.CategoryModel;
-import at.schrer.cookbook.data.dto.RecipeModel;
+import at.schrer.cookbook.data.model.CategoryModel;
+import at.schrer.cookbook.data.model.RecipeModel;
 import at.schrer.cookbook.service.CategoryService;
 import at.schrer.cookbook.service.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +17,14 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
-import static at.schrer.cookbook.frontend.controller.ControllerConstants.*;
+import static at.schrer.cookbook.frontend.FrontendConstants.*;
 
 @Controller
-@RequestMapping("/categories")
+@RequestMapping("/" + SEGMENT_CATEGORY)
 public class CategoryController {
 
-    private CategoryService categoryService;
-    private RecipeService recipeService;
+    private final CategoryService categoryService;
+    private final RecipeService recipeService;
 
     @Autowired
     public CategoryController(CategoryService categoryService, RecipeService recipeService) {
@@ -56,13 +56,13 @@ public class CategoryController {
 
     }
 
-    @GetMapping("/add")
+    @GetMapping("/" + SEGMENT_ADD)
     public String showAddCategory(Model model) {
         model.addAttribute(MODEL_ATTR_CATEGORY, new CategoryModel());
         return TEMPLATE_ADD_CATEGORY;
     }
 
-    @PostMapping("/add")
+    @PostMapping("/" + SEGMENT_ADD)
     public String addCategory(@Valid CategoryModel category, BindingResult result) {
 
         if (result.hasErrors()) {

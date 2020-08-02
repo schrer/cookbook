@@ -1,6 +1,6 @@
 package at.schrer.cookbook.service;
 
-import at.schrer.cookbook.data.dto.CategoryModel;
+import at.schrer.cookbook.data.model.CategoryModel;
 import at.schrer.cookbook.data.entity.CategoryEntity;
 import at.schrer.cookbook.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;

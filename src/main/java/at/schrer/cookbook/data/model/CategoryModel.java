@@ -1,4 +1,4 @@
-package at.schrer.cookbook.data.dto;
+package at.schrer.cookbook.data.model;
 
 import javax.validation.constraints.NotBlank;
 

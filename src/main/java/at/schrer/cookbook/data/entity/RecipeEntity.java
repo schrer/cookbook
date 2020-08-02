@@ -31,6 +31,11 @@ public class RecipeEntity {
     @NotNull
     private CategoryEntity category;
 
+    @OneToOne
+    @Column(name = "imagePath")
+    @Field
+    private ImageEntity image;
+
     public long getId() {
         return id;
     }

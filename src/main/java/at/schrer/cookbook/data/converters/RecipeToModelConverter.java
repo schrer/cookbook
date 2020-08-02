@@ -1,6 +1,6 @@
 package at.schrer.cookbook.data.converters;
 
-import at.schrer.cookbook.data.dto.RecipeModel;
+import at.schrer.cookbook.data.model.RecipeModel;
 import at.schrer.cookbook.data.entity.RecipeEntity;
 import at.schrer.cookbook.frontend.util.UrlResolver;
 import org.apache.commons.lang3.StringUtils;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class RecipeToModelConverter implements Converter<RecipeEntity, RecipeModel> {
 
-    private UrlResolver urlResolver;
+    private final UrlResolver urlResolver;
 
     @Autowired
     public RecipeToModelConverter (UrlResolver urlResolver){

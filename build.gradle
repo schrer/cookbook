@@ -26,6 +26,7 @@ dependencies {
 	compile group: 'org.hibernate', name: 'hibernate-search-orm', version: '5.11.5.Final'
 	compile group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
 	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.10'
+	compile group: 'commons-io', name: 'commons-io', version: '2.7'
 	annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 	runtimeOnly 'com.h2database:h2'
 	developmentOnly("org.springframework.boot:spring-boot-devtools")

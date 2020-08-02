@@ -1,7 +1,7 @@
 package at.schrer.cookbook.service;
 
-import at.schrer.cookbook.data.dto.CategoryModel;
-import at.schrer.cookbook.data.dto.RecipeModel;
+import at.schrer.cookbook.data.model.CategoryModel;
+import at.schrer.cookbook.data.model.RecipeModel;
 import at.schrer.cookbook.data.entity.CategoryEntity;
 import at.schrer.cookbook.data.entity.RecipeEntity;
 import at.schrer.cookbook.repository.RecipeRepository;

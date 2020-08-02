@@ -1,6 +1,7 @@
 package at.schrer.cookbook.frontend.interceptor;
 
-import at.schrer.cookbook.data.dto.CategoryModel;
+import at.schrer.cookbook.data.model.CategoryModel;
+import at.schrer.cookbook.frontend.FrontendConstants;
 import at.schrer.cookbook.frontend.util.UrlResolver;
 import at.schrer.cookbook.service.CategoryService;
 import org.apache.commons.collections4.IteratorUtils;
@@ -44,9 +45,9 @@ public class BaseTemplateHandlerInterceptor extends HandlerInterceptorAdapter {
                                 iterator());
                 modelMap.addAttribute("categories", categories);
             }
-            modelMap.addAttribute("homepageUrl", urlResolver.resolve(UrlResolver.Path.HOMEPAGE));
-            modelMap.addAttribute("addRecipeUrl", urlResolver.resolve(UrlResolver.Path.ADD_RECIPE));
-            modelMap.addAttribute("addCategoryUrl", urlResolver.resolve(UrlResolver.Path.ADD_CATEGORY));
+            modelMap.addAttribute("homepageUrl", urlResolver.resolve(FrontendConstants.Path.HOMEPAGE));
+            modelMap.addAttribute("addRecipeUrl", urlResolver.resolve(FrontendConstants.Path.ADD_RECIPE));
+            modelMap.addAttribute("addCategoryUrl", urlResolver.resolve(FrontendConstants.Path.ADD_CATEGORY));
         }
 
     }

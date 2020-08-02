@@ -1,27 +1,33 @@
 package at.schrer.cookbook.frontend.controller;
 
-import at.schrer.cookbook.data.dto.RecipeModel;
+import at.schrer.cookbook.data.model.ImageModel;
+import at.schrer.cookbook.data.model.RecipeModel;
+import at.schrer.cookbook.service.ImageService;
 import at.schrer.cookbook.service.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import java.io.IOException;
 import java.util.Optional;
 
-import static at.schrer.cookbook.frontend.controller.ControllerConstants.*;
+import static at.schrer.cookbook.frontend.FrontendConstants.*;
 
 @Controller
-@RequestMapping("/recipes")
+@RequestMapping("/" + SEGMENT_RECIPE)
 public class RecipeController {
 
-    private RecipeService recipeService;
+    private final RecipeService recipeService;
+    private final ImageService imageService;
 
     @Autowired
-    public RecipeController(RecipeService recipeService) {
+    public RecipeController(RecipeService recipeService, ImageService imageService) {
         this.recipeService = recipeService;
+        this.imageService = imageService;
     }
 
     @GetMapping({"/",""})
@@ -42,17 +48,27 @@ public class RecipeController {
 
     }
 
-    @GetMapping("/add")
+    @GetMapping("/" + SEGMENT_ADD)
     public String showAddRecipe(Model model) {
         model.addAttribute(MODEL_ATTR_RECIPE,new RecipeModel());
         return TEMPLATE_ADD_RECIPE;
     }
 
-    @PostMapping("/add")
-    public String addRecipe(@Valid RecipeModel recipe, BindingResult result) {
+    @PostMapping(value = "/" + SEGMENT_ADD, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public String addRecipe(@RequestParam @NotBlank String title,
+                            @RequestParam @NotBlank String instructions, @RequestParam Long categoryId, @RequestPart(value = "multiPartImage") MultipartFile image) throws IOException {
 
-        if (result.hasErrors()) {
-            return TEMPLATE_ADD_RECIPE;
+//        if (result.hasErrors()) {
+//            return TEMPLATE_ADD_RECIPE;
+//        }
+
+        RecipeModel recipe = new RecipeModel();
+        recipe.setCategoryId(categoryId);
+        recipe.setInstructions(instructions);
+        recipe.setTitle(title);
+        if (!image.isEmpty()){
+            ImageModel imageModel = imageService.saveImage(image);
+            recipe.setImage(imageModel);
         }
 
         RecipeModel savedRecipe = recipeService.saveRecipe(recipe);

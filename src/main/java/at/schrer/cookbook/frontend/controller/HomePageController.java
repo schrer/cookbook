@@ -1,6 +1,6 @@
 package at.schrer.cookbook.frontend.controller;
 
-import at.schrer.cookbook.data.dto.RecipeModel;
+import at.schrer.cookbook.data.model.RecipeModel;
 import at.schrer.cookbook.service.RecipeService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-import static at.schrer.cookbook.frontend.controller.ControllerConstants.MODEL_ATTR_RECIPE_LIST;
-import static at.schrer.cookbook.frontend.controller.ControllerConstants.TEMPLATE_HOMEPAGE;
+import static at.schrer.cookbook.frontend.FrontendConstants.MODEL_ATTR_RECIPE_LIST;
+import static at.schrer.cookbook.frontend.FrontendConstants.TEMPLATE_HOMEPAGE;
 
 @Controller
 @RequestMapping("/")

@@ -34,7 +34,7 @@ public class HibernateSearchService {
         QueryBuilder queryBuilder = fullTextEntityManager.getSearchFactory().buildQueryBuilder().forEntity(RecipeEntity.class).get();
         Query query = queryBuilder.keyword().fuzzy().onField("title").matching(searchTerm).createQuery();
 
-        return (List<RecipeEntity>) fullTextEntityManager.createFullTextQuery(query, RecipeEntity.class).getResultList();
+        return fullTextEntityManager.createFullTextQuery(query, RecipeEntity.class).getResultList();
     }
 
 }

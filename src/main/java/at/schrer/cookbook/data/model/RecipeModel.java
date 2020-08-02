@@ -1,4 +1,4 @@
-package at.schrer.cookbook.data.dto;
+package at.schrer.cookbook.data.model;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -19,6 +19,8 @@ public class RecipeModel {
     private String url;
 
     private String shortDescription;
+
+    private ImageModel image;
 
     public long getId() {
         return id;
@@ -66,5 +68,13 @@ public class RecipeModel {
 
     public void setShortDescription(String shortDescription) {
         this.shortDescription = shortDescription;
+    }
+
+    public ImageModel getImage() {
+        return image;
+    }
+
+    public void setImage(ImageModel image) {
+        this.image = image;
     }
 }

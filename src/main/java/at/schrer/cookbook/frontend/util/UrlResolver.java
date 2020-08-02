@@ -1,8 +1,11 @@
 package at.schrer.cookbook.frontend.util;
 
-import at.schrer.cookbook.data.dto.CategoryModel;
-import at.schrer.cookbook.data.dto.RecipeModel;
+import at.schrer.cookbook.data.model.CategoryModel;
+import at.schrer.cookbook.data.model.ImageModel;
+import at.schrer.cookbook.data.model.RecipeModel;
 import org.springframework.stereotype.Component;
+
+import static at.schrer.cookbook.frontend.FrontendConstants.*;
 
 /**
  * Resolves URLs to the view of supported Model-types and to .
@@ -10,28 +13,6 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class UrlResolver {
-
-    private static final String SEGMENT_CATEGORY = "categories";
-    private static final String SEGMENT_RECIPE = "recipes";
-    private static final String SEGMENT_ADD = "add";
-
-    /**
-     * An enum that represents a specific page on the application. Can be resolved to a URL by the {@link UrlResolver}.
-     */
-    public enum Path {
-        ADD_RECIPE("/" + SEGMENT_RECIPE + "/" + SEGMENT_ADD),
-        ADD_CATEGORY("/" + SEGMENT_CATEGORY + "/" + SEGMENT_ADD),
-        HOMEPAGE("/");
-
-        private final String value;
-        Path(String path){
-            this.value = path;
-        }
-
-        String getValue(){
-            return this.value;
-        }
-    }
 
     /**
      * Resolves the view-URL to a category.
@@ -53,6 +34,17 @@ public class UrlResolver {
      */
     public String resolve(RecipeModel recipe) {
         return buildUrlFromSegments(SEGMENT_RECIPE, Long.toString(recipe.getId()));
+    }
+
+    /**
+     * Resolves the view-URL to an image.
+     * All attributes (except the url itself) need to be set on the model before calling the resolve method, otherwise a successful resolving cannot be guaranteed.
+     *
+     * @param image the image model
+     * @return the URL to the view page of the recipe
+     */
+    public String resolve(ImageModel image){
+        return buildUrlFromSegments(SEGMENT_MEDIA, SEGMENT_IMAGES, image.getId());
     }
 
     /**
