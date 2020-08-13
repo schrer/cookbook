@@ -11,8 +11,8 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.util.Optional;
 
 import static at.schrer.cookbook.CookbookConfig.COOOKBOOK_CONVERTER_BEAN_NAME;
 
@@ -30,6 +30,13 @@ public class ImageService {
         this.converter = converter;
     }
 
+    /**
+     * Saves the image to the database. First the image will be put into the database, then the file will be saved using the generated ID.
+     * Afterwards the path of the newly created image will be updated in the database.
+     * @param multipartImage the image as MultipartFile
+     * @return the ImageModel of the newly saved image.
+     * @throws IOException if an error happens during while saving.
+     */
     public ImageModel saveImage(MultipartFile multipartImage) throws IOException {
         try {
 
@@ -44,8 +51,21 @@ public class ImageService {
         }
     }
 
-    public InputStream getImageAsInputStrem(String imageId){
-        //TODO implement
-        return null;
+    /**
+     * Returns the image as InputStream or null of no image can be found under this ID.
+     * @param imageId the ID of the image
+     * @return the image file as InputStream
+     * @throws FileNotFoundException if the file specified by the image cannot be found.
+     */
+    public InputStream getImageAsInputStrem(String imageId) throws FileNotFoundException {
+        Optional<ImageEntity> imageEntityOpt = imageRepository.findById(imageId);
+        if (imageEntityOpt.isEmpty()){
+            return null;
+        }
+
+        ImageEntity imageEntity = imageEntityOpt.get();
+        String path = imageEntity.getPath();
+        File file = new File(path);
+        return new FileInputStream(file);
     }
 }
