@@ -68,4 +68,11 @@ public class RecipeEntity {
         this.category = category;
     }
 
+    public ImageEntity getImage() {
+        return image;
+    }
+
+    public void setImage(ImageEntity image) {
+        this.image = image;
+    }
 }

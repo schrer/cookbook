@@ -12,8 +12,8 @@ import java.util.Arrays;
 @Repository
 public class FileRepository {
 
-    @Value("${application.data-dir}")
-    private String dataDirPath;
+    @Value("${application.image-dir}")
+    private String imageDirPath;
 
     private static final String MIME_IMAGE_JPG = "image/jpeg";
     private static final String MIME_IMAGE_PNG = "image/png";
@@ -34,13 +34,13 @@ public class FileRepository {
     private String buildImagePath (String name, String mimeType){
         String fileTypeSuffix = "";
         if (MIME_IMAGE_PNG.equals(mimeType)){
-            fileTypeSuffix = ".jpg";
-        }
-        else if (MIME_IMAGE_JPG.equals(mimeType)){
             fileTypeSuffix = ".png";
         }
+        else if (MIME_IMAGE_JPG.equals(mimeType)){
+            fileTypeSuffix = ".jpg";
+        }
 
-        String folder = dataDirPath.endsWith("/") ? dataDirPath : dataDirPath + "/";
+        String folder = imageDirPath.endsWith("/") ? imageDirPath : imageDirPath + "/";
         return folder + name + fileTypeSuffix;
     }
 }

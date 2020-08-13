@@ -3,7 +3,7 @@
     {
       "name": "application.data-dir",
       "type": "java.lang.String",
-      "description": "Directory where the application data will be stored (database file, index, images, etc.)."
+      "description": "Directory where application data, that does not have a more specific path, will be stored."
     },
     {
       "name": "jdbc.url",
@@ -24,5 +24,10 @@
       "name": "jdbc.driver",
       "type": "java.lang.String",
       "description": "Fully qualified name of the database driver."
+    },
+    {
+      "name": "application.image-dir",
+      "type": "java.lang.String",
+      "description": "Directory for images."
     }
   ] }
