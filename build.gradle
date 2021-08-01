@@ -1,11 +1,11 @@
 plugins {
-	id 'org.springframework.boot' version '2.1.8.RELEASE'
-	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'org.springframework.boot' version '2.5.3'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 }
 
 group = 'at.schrer'
-version = '0.0.1-SNAPSHOT'
+version = rootProject.version
 sourceCompatibility = '11'
 
 repositories {
@@ -20,17 +20,18 @@ configurations {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-	compile group: 'org.hibernate', name: 'hibernate-search-orm', version: '5.11.5.Final'
-	compile group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
-	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.10'
-	compile group: 'commons-io', name: 'commons-io', version: '2.7'
-	annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
-	runtimeOnly 'com.h2database:h2'
-	developmentOnly("org.springframework.boot:spring-boot-devtools")
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.boot:spring-boot-starter-web:2.5.3'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.3'
+	implementation 'org.springframework.boot:spring-boot-starter-validation:2.5.3'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:2.5.3'
+	implementation group: 'org.hibernate', name: 'hibernate-search-orm', version: '5.11.9.Final'
+	implementation group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
+	implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
+	implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor:2.5.3'
+	runtimeOnly 'com.h2database:h2:1.4.200'
+	developmentOnly('org.springframework.boot:spring-boot-devtools:2.5.3')
+	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.3'
 }
 
 compileJava.dependsOn(processResources)
