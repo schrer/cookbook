@@ -1,5 +1,7 @@
 package at.schrer.cookbook.data.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -21,6 +23,8 @@ public class RecipeModel {
     private String shortDescription;
 
     private ImageModel image;
+
+    private MultipartFile multiPartImage;
 
     public long getId() {
         return id;
@@ -76,5 +80,13 @@ public class RecipeModel {
 
     public void setImage(ImageModel image) {
         this.image = image;
+    }
+
+    public MultipartFile getMultiPartImage() {
+        return multiPartImage;
+    }
+
+    public void setMultiPartImage(MultipartFile multiPartImage) {
+        this.multiPartImage = multiPartImage;
     }
 }

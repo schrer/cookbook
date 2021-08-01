@@ -5,22 +5,26 @@ import org.hibernate.search.annotations.Field;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.UUID;
 
 @Entity
 public class ImageEntity {
 
     @Id
-    @GeneratedValue(generator="system-uuid")
-    private String id;
+    @GeneratedValue
+    private UUID id;
 
     @Field
     private String path;
 
-    public String getId() {
+    @Field
+    private int priority;
+
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -30,5 +34,13 @@ public class ImageEntity {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 }

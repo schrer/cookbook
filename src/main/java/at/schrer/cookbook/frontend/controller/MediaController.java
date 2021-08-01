@@ -29,7 +29,7 @@ public class MediaController {
 
     @GetMapping("/" + SEGMENT_IMAGES + "/{imageId}")
     public @ResponseBody byte[] serveImage(@PathVariable @NotBlank String imageId) throws IOException {
-        InputStream imageStream = imageService.getImageAsInputStrem(imageId);
+        InputStream imageStream = imageService.getImageAsInputStream(imageId);
         return IOUtils.toByteArray(imageStream);
     }
 }

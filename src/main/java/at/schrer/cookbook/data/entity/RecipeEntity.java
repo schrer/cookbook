@@ -6,6 +6,7 @@ import org.hibernate.search.annotations.Indexed;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Indexed
 @Entity(name = "Recipe")
@@ -13,28 +14,23 @@ public class RecipeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private long id;
 
-    @Column(name = "title")
     @NotBlank
     @Field
     private String title;
 
-    @Column(name = "instructions")
+
     @NotBlank
-    @Field
     private String instructions;
 
     @ManyToOne
-    @JoinColumn(name = "category")
     @NotNull
+    @JoinColumn(name = "category")
     private CategoryEntity category;
 
-    @OneToOne
-    @Column(name = "imagePath")
-    @Field
-    private ImageEntity image;
+    @OneToMany
+    private List<ImageEntity> image;
 
     public long getId() {
         return id;
@@ -68,11 +64,11 @@ public class RecipeEntity {
         this.category = category;
     }
 
-    public ImageEntity getImage() {
+    public List<ImageEntity> getImage() {
         return image;
     }
 
-    public void setImage(ImageEntity image) {
+    public void setImage(List<ImageEntity> image) {
         this.image = image;
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.UUID;
 
 @Repository
 public class FileRepository {
@@ -21,12 +22,12 @@ public class FileRepository {
     private static final String[] supportedImageTypes = {MIME_IMAGE_JPG,MIME_IMAGE_PNG};
 
 
-    public String saveImage(MultipartFile image, String name) throws UnsupportedFileTypeException, IOException {
+    public String saveImage(MultipartFile image, UUID name) throws UnsupportedFileTypeException, IOException {
         if ( !Arrays.asList(supportedImageTypes).contains(image.getContentType()) ) {
             throw new UnsupportedFileTypeException("Unsupported file type for image. MIME type: " + image.getContentType());
         }
 
-        File imageFile = new File(buildImagePath(name, image.getContentType()));
+        File imageFile = new File(buildImagePath(name.toString(), image.getContentType()));
         image.transferTo(imageFile);
         return imageFile.getAbsolutePath();
     }
@@ -40,7 +41,16 @@ public class FileRepository {
             fileTypeSuffix = ".jpg";
         }
 
+        createDirIfNotPresent(imageDirPath);
+
         String folder = imageDirPath.endsWith("/") ? imageDirPath : imageDirPath + "/";
         return folder + name + fileTypeSuffix;
+    }
+
+    private void createDirIfNotPresent(final String path){
+        final File directory = new File(path);
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
     }
 }

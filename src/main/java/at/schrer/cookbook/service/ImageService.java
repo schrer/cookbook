@@ -52,12 +52,12 @@ public class ImageService {
     }
 
     /**
-     * Returns the image as InputStream or null of no image can be found under this ID.
+     * Returns the image as InputStream or null if no image can be found under this ID.
      * @param imageId the ID of the image
      * @return the image file as InputStream
      * @throws FileNotFoundException if the file specified by the image cannot be found.
      */
-    public InputStream getImageAsInputStrem(String imageId) throws FileNotFoundException {
+    public InputStream getImageAsInputStream(String imageId) throws FileNotFoundException {
         Optional<ImageEntity> imageEntityOpt = imageRepository.findById(imageId);
         if (imageEntityOpt.isEmpty()){
             return null;
