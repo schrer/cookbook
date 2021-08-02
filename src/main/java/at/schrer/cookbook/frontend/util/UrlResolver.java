@@ -44,7 +44,7 @@ public class UrlResolver {
      * @return the URL to the view page of the recipe
      */
     public String resolve(ImageModel image){
-        return buildUrlFromSegments(SEGMENT_MEDIA, SEGMENT_IMAGES, image.getId());
+        return buildUrlFromSegments(SEGMENT_MEDIA, SEGMENT_IMAGES, image.getId().toString());
     }
 
     /**

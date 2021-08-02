@@ -27,7 +27,7 @@
                 <header class="main">
                     <h1 th:text="${recipe.title}"></h1>
                 </header>
-                <span th:if="${recipe.image != null}" class="image fit">
+                <span th:if="${recipe.image != null}" class="image main">
                     <img th:src="${recipe.image.url}" th:alt="${recipe.title}">
                 </span>
                 <p class="showLineBreak" th:text="${recipe.instructions}" ></p>

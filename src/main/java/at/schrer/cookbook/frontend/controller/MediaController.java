@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.validation.constraints.NotBlank;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.UUID;
 
 import static at.schrer.cookbook.frontend.FrontendConstants.SEGMENT_IMAGES;
 import static at.schrer.cookbook.frontend.FrontendConstants.SEGMENT_MEDIA;
@@ -28,7 +29,7 @@ public class MediaController {
     }
 
     @GetMapping("/" + SEGMENT_IMAGES + "/{imageId}")
-    public @ResponseBody byte[] serveImage(@PathVariable @NotBlank String imageId) throws IOException {
+    public @ResponseBody byte[] serveImage(@PathVariable @NotBlank UUID imageId) throws IOException {
         InputStream imageStream = imageService.getImageAsInputStream(imageId);
         return IOUtils.toByteArray(imageStream);
     }

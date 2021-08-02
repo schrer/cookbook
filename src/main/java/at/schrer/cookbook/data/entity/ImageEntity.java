@@ -2,9 +2,7 @@ package at.schrer.cookbook.data.entity;
 
 import org.hibernate.search.annotations.Field;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
@@ -19,6 +17,9 @@ public class ImageEntity {
 
     @Field
     private int priority;
+
+    @ManyToOne
+    private RecipeEntity recipe;
 
     public UUID getId() {
         return id;
@@ -42,5 +43,13 @@ public class ImageEntity {
 
     public void setPriority(int priority) {
         this.priority = priority;
+    }
+
+    public RecipeEntity getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(RecipeEntity recipe) {
+        this.recipe = recipe;
     }
 }

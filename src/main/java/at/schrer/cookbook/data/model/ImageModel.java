@@ -1,18 +1,19 @@
 package at.schrer.cookbook.data.model;
 
 import javax.validation.constraints.NotBlank;
+import java.util.UUID;
 
 public class ImageModel {
 
     @NotBlank
-    private String id;
+    private UUID id;
     private String url;
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

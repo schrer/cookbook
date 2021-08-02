@@ -66,12 +66,13 @@ public class RecipeController {
         recipe.setCategoryId(categoryId);
         recipe.setInstructions(instructions);
         recipe.setTitle(title);
-        if (!image.isEmpty()){
-            ImageModel imageModel = imageService.saveImage(image);
-            recipe.setImage(imageModel);
-        }
 
         RecipeModel savedRecipe = recipeService.saveRecipe(recipe);
+
+        if (!image.isEmpty()){
+            imageService.saveImage(image, savedRecipe.getId());
+        }
+
         return REDIRECT_PREFIX + savedRecipe.getUrl();
     }
 }

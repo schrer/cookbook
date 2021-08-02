@@ -20,7 +20,7 @@ public class ImageToModelConverter implements Converter<ImageEntity, ImageModel>
     @Override
     public ImageModel convert(ImageEntity source){
         ImageModel target = new ImageModel();
-        target.setId(source.getId().toString());
+        target.setId(source.getId());
         target.setUrl(urlResolver.resolve(target));
         return target;
     }

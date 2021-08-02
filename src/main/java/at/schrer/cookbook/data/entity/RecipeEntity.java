@@ -29,7 +29,7 @@ public class RecipeEntity {
     @JoinColumn(name = "category")
     private CategoryEntity category;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
     private List<ImageEntity> image;
 
     public long getId() {

@@ -3,6 +3,7 @@ package at.schrer.cookbook.data.converters;
 import at.schrer.cookbook.data.model.RecipeModel;
 import at.schrer.cookbook.data.entity.RecipeEntity;
 import at.schrer.cookbook.frontend.util.UrlResolver;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
@@ -12,10 +13,12 @@ import org.springframework.stereotype.Component;
 public class RecipeToModelConverter implements Converter<RecipeEntity, RecipeModel> {
 
     private final UrlResolver urlResolver;
+    private final ImageToModelConverter imageConverter;
 
     @Autowired
-    public RecipeToModelConverter (UrlResolver urlResolver){
+    public RecipeToModelConverter(UrlResolver urlResolver, ImageToModelConverter imageConverter){
         this.urlResolver = urlResolver;
+        this.imageConverter = imageConverter;
     }
 
     @Override
@@ -28,6 +31,9 @@ public class RecipeToModelConverter implements Converter<RecipeEntity, RecipeMod
         target.setCategoryId(source.getCategory().getId());
         target.setShortDescription(createShortDescription(source));
         target.setUrl(urlResolver.resolve(target));
+        if (CollectionUtils.isNotEmpty(source.getImage())) {
+            target.setImage(imageConverter.convert(source.getImage().get(0)));
+        }
         return target;
     }
 
