@@ -1,6 +1,5 @@
 package at.schrer.cookbook.frontend.controller;
 
-import at.schrer.cookbook.data.model.ImageModel;
 import at.schrer.cookbook.data.model.RecipeModel;
 import at.schrer.cookbook.service.ImageService;
 import at.schrer.cookbook.service.RecipeService;

@@ -1,0 +1,5 @@
+<html xmlns:th="http://www.thymeleaf.org">
+    <li th:fragment="listingElement (index, active)">
+        <a th:href="@{./(page=${index})}" class="page" th:classappend="${active ? 'active' : ''}" th:text="${index}">1</a>
+    </li>
+</html>

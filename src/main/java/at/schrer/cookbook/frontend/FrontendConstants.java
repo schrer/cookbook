@@ -21,6 +21,8 @@ public class FrontendConstants {
     public static final String MODEL_ATTR_CATEGORY = "category";
     public static final String MODEL_ATTR_RECIPE = "recipe";
     public static final String MODEL_ATTR_RECIPE_IMAGE_URL = "recipeImageUrl";
+    public static final String MODEL_ATTR_NUMBER_OF_PAGES = "numberOfPages";
+    public static final String MODEL_ATTR_CURRENT_PAGE = "currentPage";
 
     // HomePageController
     public static final String TEMPLATE_HOMEPAGE = "homepage";

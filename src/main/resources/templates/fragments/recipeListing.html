@@ -1,5 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <!--/*@thymesVar id="recipeList" type="java.util.List<at.schrer.cookbook.data.model.RecipeModel>"*/-->
+<!--/*@thymesVar id="numberOfPages" type="java.lang.Integer"*/-->
+<!--/*@thymesVar id="currentPage" type="java.lang.Integer"*/-->
     <section>
         <p th:if="${#lists.isEmpty(recipeList)}" th:text="#{recipe.listing.norecipes}"></p>
         <div class="posts" th:unless="${#lists.isEmpty(recipeList)}">
@@ -10,6 +12,13 @@
                     <li><a th:href="${recipe.url}" class="button" th:text="#{recipe.listing.open.recipe}"></a></li>
                 </ul>
             </article>
+            <ul class="pagination" th:if="${numberOfPages > 1}">
+                <li><a th:href="@{./(page=${currentPage - 1})}" class="button" th:classappend="${currentPage <= 1 ? 'disabled' : ''}">Prev</a></li>
+                <li th:each="index : ${#numbers.sequence(1, numberOfPages)}">
+                    <a th:replace="fragments/listingElement :: listingElement (index, ${currentPage == index})"></a>
+                </li>
+                <li><a th:href="@{./(page=${currentPage + 1})}" class="button" th:classappend="${currentPage >= numberOfPages ? 'disabled' : ''}">Next</a></li>
+            </ul>
         </div>
     </section>
 </html>

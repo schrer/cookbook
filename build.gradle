@@ -1,6 +1,7 @@
 plugins {
 	id 'org.springframework.boot' version '2.5.3'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+//	id "name.remal.sonarlint" version '1.5.0'
 	id 'java'
 }
 
@@ -19,19 +20,27 @@ configurations {
 	}
 }
 
+//sonarlint {
+	// excludes {
+	// 	message 'html'
+	// 	message 'javascript'
+	// }
+//}
+
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web:2.5.3'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.3'
-	implementation 'org.springframework.boot:spring-boot-starter-validation:2.5.3'
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:2.5.3'
+	implementation 'org.springframework.boot:spring-boot-starter-web:2.5.4'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.4'
+	implementation 'org.springframework.boot:spring-boot-starter-validation:2.5.4'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:2.5.4'
 	implementation group: 'org.hibernate', name: 'hibernate-search-orm', version: '5.11.9.Final'
 	implementation group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
 	implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
 	implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
-	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor:2.5.3'
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor:2.5.4'
 	runtimeOnly 'com.h2database:h2:1.4.200'
-	developmentOnly('org.springframework.boot:spring-boot-devtools:2.5.3')
-	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.3'
+	developmentOnly('org.springframework.boot:spring-boot-devtools:2.5.4')
+	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.4'
 }
 
 compileJava.dependsOn(processResources)
+//check.dependsOn(sonarlintMain)

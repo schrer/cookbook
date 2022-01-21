@@ -6,11 +6,16 @@ import at.schrer.cookbook.data.entity.CategoryEntity;
 import at.schrer.cookbook.data.entity.RecipeEntity;
 import at.schrer.cookbook.repository.RecipeRepository;
 import at.schrer.cookbook.search.HibernateSearchService;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +24,9 @@ import static at.schrer.cookbook.CookbookConfig.COOOKBOOK_CONVERTER_BEAN_NAME;
 
 @Service
 public class RecipeService {
+
+    @Value("${cookbook.paging.size:0}")
+    private Integer pagingSize;
 
     private final RecipeRepository recipeRepository;
     private final ConversionService converter;
@@ -44,6 +52,29 @@ public class RecipeService {
     public List<RecipeModel> getAllRecipes(){
         Iterable<RecipeEntity> recipeEntities = recipeRepository.findAll();
         return convertRecipeEntities(recipeEntities);
+    }
+
+    public Pair<List<RecipeModel>, Integer> getRecipesByCategoryPaged(CategoryModel categoryModel, Integer page) {
+        int baseMultiplier = (page == null || page <= 1) ? 0 : page - 1;
+
+        List<RecipeEntity> recipeEntities = recipeRepository.findRecipeEntitiesByCategory(converter.convert(categoryModel, CategoryEntity.class));
+
+        if (CollectionUtils.isEmpty(recipeEntities)) {
+            return new ImmutablePair<>(Collections.emptyList(), 0);
+        }
+
+        int numberOfPages = (int) Math.ceil(CollectionUtils.size(recipeEntities) * 1d / pagingSize.doubleValue());
+
+        int firstRecipe = baseMultiplier * pagingSize;
+        int nextPageRecipe = (baseMultiplier + 1) * pagingSize;
+
+        if (numberOfPages <= baseMultiplier) {
+            firstRecipe = baseMultiplier * pagingSize;
+            nextPageRecipe = CollectionUtils.size(recipeEntities);
+        }
+
+        List<RecipeModel> recipeModels = convertRecipeEntities(recipeEntities.subList(firstRecipe, nextPageRecipe));
+        return new ImmutablePair<>(recipeModels, numberOfPages);
     }
 
     public List<RecipeModel> getRecipesByCategory(CategoryModel categoryModel) {
