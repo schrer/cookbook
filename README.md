@@ -5,8 +5,7 @@ A cookbook for usage in a private network
 ## Installation
 
 **Requirements:**
-* JDK 11 for building
-* JRE 11 for executing (only if JDK 11 is not installed)
+* Java 17
 
 Build the package by executing the Gradle-target `jar`, either by executing in your IDE of choice or using the console and running `gradlew jar`.  
 The JAR-package can then be found in `build\libs`. Run it using `java -jar <JARNAME>.jar`
