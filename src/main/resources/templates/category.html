@@ -20,7 +20,7 @@
     <div id="main">
         <div class="inner">
 
-            <div th:replace="fragments/header.html"></div>
+            <div th:replace="~{fragments/header.html}"></div>
 
             <!-- Content -->
             <section>
@@ -29,15 +29,15 @@
                 </header>
                 <p th:text="${category.description}"></p>
             </section>
-            <div th:replace="fragments/recipeListing.html"></div>
+            <div th:replace="~{fragments/recipeListing.html}"></div>
         </div>
     </div>
 
-    <div th:replace="fragments/sidebar.html"></div>
+    <div th:replace="~{fragments/sidebar.html}"></div>
 
 </div>
 
-<div th:replace="fragments/scripts.html"></div>
+<div th:replace="~{fragments/scripts.html}"></div>
 
 </body>
 </html>
