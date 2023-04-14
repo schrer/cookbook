@@ -1,8 +1,7 @@
 package at.schrer.cookbook.data.entity;
 
-import org.hibernate.search.annotations.Field;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.UUID;
 
 @Entity
@@ -12,10 +11,8 @@ public class ImageEntity {
     @GeneratedValue
     private UUID id;
 
-    @Field
     private String path;
 
-    @Field
     private int priority;
 
     @ManyToOne

@@ -5,7 +5,6 @@ import at.schrer.cookbook.data.model.RecipeModel;
 import at.schrer.cookbook.data.entity.CategoryEntity;
 import at.schrer.cookbook.data.entity.RecipeEntity;
 import at.schrer.cookbook.repository.RecipeRepository;
-import at.schrer.cookbook.search.HibernateSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.convert.ConversionService;
@@ -22,13 +21,13 @@ public class RecipeService {
 
     private final RecipeRepository recipeRepository;
     private final ConversionService converter;
-    private final HibernateSearchService searchService;
+    //private final HibernateSearchService searchService;
 
     @Autowired
-    public RecipeService(RecipeRepository recipeRepository, @Qualifier(COOOKBOOK_CONVERTER_BEAN_NAME) ConversionService converter, HibernateSearchService searchService) {
+    public RecipeService(RecipeRepository recipeRepository, @Qualifier(COOOKBOOK_CONVERTER_BEAN_NAME) ConversionService converter) {
         this.recipeRepository = recipeRepository;
         this.converter = converter;
-        this.searchService = searchService;
+        //this.searchService = searchService;
     }
 
     public RecipeModel saveRecipe(RecipeModel recipe) {
@@ -58,7 +57,9 @@ public class RecipeService {
     }
 
     public List<RecipeModel> searchRecipesByTitle(String query){
-        List<RecipeEntity> recipeEntities = searchService.searchRecipesByFuzzyTitle(query);
+        // TODO fix hibernateSearchService
+        //List<RecipeEntity> recipeEntities = searchService.searchRecipesByFuzzyTitle(query);
+        List<RecipeEntity> recipeEntities = List.of();
         return convertRecipeEntities(recipeEntities);
     }
 

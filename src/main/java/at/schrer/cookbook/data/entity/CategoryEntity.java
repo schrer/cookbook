@@ -1,6 +1,6 @@
 package at.schrer.cookbook.data.entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity(name = "Category")
 public class CategoryEntity {

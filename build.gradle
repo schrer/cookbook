@@ -1,5 +1,5 @@
 plugins {
-	id 'org.springframework.boot' version '2.5.3'
+	id 'org.springframework.boot' version '3.0.5'
 	id 'io.spring.dependency-management' version '1.1.0'
 	id 'java'
 }
@@ -13,18 +13,21 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web:2.5.4'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.4'
-	implementation 'org.springframework.boot:spring-boot-starter-validation:2.5.4'
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:2.5.4'
-	implementation group: 'org.hibernate', name: 'hibernate-search-orm', version: '5.11.9.Final'
+	implementation 'org.springframework.boot:spring-boot-starter-web:3.0.5'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa:3.0.5'
+	implementation 'org.springframework.boot:spring-boot-starter-validation:3.0.5'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:3.0.5'
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor:3.0.5'
+
+	//implementation group: 'org.hibernate.search', name: 'hibernate-search-mapper-orm', version: '6.1.8.Final'
 	implementation group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
 	implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
 	implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
-	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor:2.5.4'
-	runtimeOnly 'com.h2database:h2:1.4.200'
-	developmentOnly('org.springframework.boot:spring-boot-devtools:2.5.4')
-	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.4'
+
+	runtimeOnly group: 'com.h2database', name: 'h2', version: '2.1.214'
+	developmentOnly('org.springframework.boot:spring-boot-devtools:3.0.5')
+	testImplementation 'org.springframework.boot:spring-boot-starter-test:3.0.5'
+	testImplementation 'junit:junit:4.13.1'
 }
 
 tasks.named('test') {

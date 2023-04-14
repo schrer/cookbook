@@ -8,15 +8,15 @@ import org.apache.commons.collections4.IteratorUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Component
-public class BaseTemplateHandlerInterceptor extends HandlerInterceptorAdapter {
+public class BaseTemplateHandlerInterceptor implements HandlerInterceptor {
 
     private final CategoryService categoryService;
     private final UrlResolver urlResolver;

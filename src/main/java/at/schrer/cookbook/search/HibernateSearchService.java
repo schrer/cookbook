@@ -1,5 +1,5 @@
 package at.schrer.cookbook.search;
-
+/*
 import at.schrer.cookbook.data.entity.RecipeEntity;
 import org.apache.lucene.search.Query;
 import org.hibernate.search.jpa.FullTextEntityManager;
@@ -8,9 +8,9 @@ import org.hibernate.search.query.dsl.QueryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
+import jakarta.annotation.PostConstruct;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
 import java.util.List;
 
 @Service
@@ -37,4 +37,4 @@ public class HibernateSearchService {
         return fullTextEntityManager.createFullTextQuery(query, RecipeEntity.class).getResultList();
     }
 
-}
+}*/

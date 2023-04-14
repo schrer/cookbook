@@ -1,14 +1,10 @@
 package at.schrer.cookbook.data.entity;
 
-import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.Indexed;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import java.util.List;
 
-@Indexed
 @Entity(name = "Recipe")
 public class RecipeEntity {
 
@@ -17,7 +13,6 @@ public class RecipeEntity {
     private long id;
 
     @NotBlank
-    @Field
     private String title;
 
 
