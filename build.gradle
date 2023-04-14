@@ -1,31 +1,16 @@
 plugins {
 	id 'org.springframework.boot' version '2.5.3'
-	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-//	id "name.remal.sonarlint" version '1.5.0'
+	id 'io.spring.dependency-management' version '1.1.0'
 	id 'java'
 }
 
 group = 'at.schrer'
 version = rootProject.version
-sourceCompatibility = '11'
+sourceCompatibility = '17'
 
 repositories {
 	mavenCentral()
 }
-
-configurations {
-	developmentOnly
-	runtimeClasspath {
-		extendsFrom developmentOnly
-	}
-}
-
-//sonarlint {
-	// excludes {
-	// 	message 'html'
-	// 	message 'javascript'
-	// }
-//}
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web:2.5.4'
@@ -42,5 +27,6 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.4'
 }
 
-compileJava.dependsOn(processResources)
-//check.dependsOn(sonarlintMain)
+tasks.named('test') {
+	useJUnitPlatform()
+}
